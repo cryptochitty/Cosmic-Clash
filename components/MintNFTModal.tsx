@@ -6,10 +6,9 @@ interface MintNFTModalProps {
     isOpen: boolean;
     onClose: () => void;
     walletAddress: string | null;
-    onMintSuccess: () => void;
 }
 
-export const MintNFTModal: React.FC<MintNFTModalProps> = ({ isOpen, onClose, walletAddress, onMintSuccess }) => {
+export const MintNFTModal: React.FC<MintNFTModalProps> = ({ isOpen, onClose, walletAddress }) => {
     const [mintingStep, setMintingStep] = useState<MintingStep>('initial');
     const [fakeTxHash, setFakeTxHash] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -46,9 +45,6 @@ export const MintNFTModal: React.FC<MintNFTModalProps> = ({ isOpen, onClose, wal
             setTimeout(() => {
                 setFakeTxHash(signature);
                 setMintingStep('success');
-                if (onMintSuccess) {
-                    onMintSuccess();
-                }
             }, 2000);
 
         } catch (error: any) {
